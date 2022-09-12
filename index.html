@@ -12,9 +12,11 @@
 </head>
 
 <body>
-    <div>
+    <img id="gameOver" class="gameOverImg d-none" src="./img/gameOver.png">
+    <button id="restart-button" class="restart-button d-none" onclick="restartGame()">Restart</button>
+    <div id="game-content" class="">
         <div class="players">
-        <div id="player1" class="inactive-player">
+        <div id="player1" class="opacity">
             <svg id="" viewBox="0 0 6 6" class="cross">
                 <path d="M 0 1 L 1 0 L 3 2 L 5 0 L 6 1 L 4 3 L 6 5 L 5 6 L 3 4 L 1 6 L 0 5 L 2 3 L 0 1" />
             </svg>
@@ -27,6 +29,15 @@
             <span>Player 2</span>
         </div>
     </div>
+    <div id="line-0" class="horizontal-line" style="top: 413px;"></div>
+    <div id="line-1" class="horizontal-line" style="top: 554px;"></div>
+    <div id="line-2" class="horizontal-line" style="top: 699px;"></div>
+    <div id="line-3" class="horizontal-line make-vertikal" style="top: 558px; left: 359px;"></div>
+    <div id="line-4" class="horizontal-line make-vertikal" style="top: 558px;"></div>
+    <div id="line-5" class="horizontal-line make-vertikal" style="top: 558px; left: 645px;"></div>
+    <div id="line-6" class="horizontal-line spin-45deg" style="top: 529px; transform: rotate(45deg) scaleX(0.0);"></div>
+    <div id="line-7" class="horizontal-line spin-45deg" style="top: 529px; transform: rotate(-45deg) scaleX(0.0);"></div>
+    
         <table>
             <tr>
                 <td onclick="fillShape(0)">
