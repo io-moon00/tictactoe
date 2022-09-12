@@ -73,4 +73,8 @@ table tr td:last-child{
     font-size: 24px;
 }
 
+.inactive-player{
+opacity: 0.6;
+}
+
 

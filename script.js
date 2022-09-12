@@ -4,10 +4,14 @@ let currentShape = 'cross';
 function fillShape(id){
 
     if (currentShape == 'cross'){
-       currentShape = 'circle'; 
+       currentShape = 'circle';
+       document.getElementById('player1').classList.remove('inactive-player');
+       document.getElementById('player2').classList.add('inactive-player');
     }
     else{
         currentShape = 'cross'
+        document.getElementById('player1').classList.add('inactive-player');
+        document.getElementById('player2').classList.remove('inactive-player');
     }
     fields[id] = currentShape;
     draw();
