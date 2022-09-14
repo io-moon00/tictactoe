@@ -1,24 +1,35 @@
 let fields = [];
 let currentShape = 'circle';
 let gameOver = false;
+let winner;
+
 
 function fillShape(id){
 if (!fields[id] && !gameOver){
-    if (currentShape == 'cross'){
-       currentShape = 'circle';
-       document.getElementById('player1').classList.remove('opacity');
-       document.getElementById('player2').classList.add('opacity');
+    if (currentShape == 'circle'){
+        setActivePlayer1()
     }
     else{
-        currentShape = 'cross'
-        document.getElementById('player1').classList.add('opacity');
-        document.getElementById('player2').classList.remove('opacity');
+        setActivePlayer2()
     }
-
     fields[id] = currentShape;
     draw();
-    checkForWin();
+    checkForGameOver();
     }
+}
+
+
+function setActivePlayer1(){
+    document.getElementById('player1').classList.remove('opacity');
+    document.getElementById('player2').classList.add('opacity');
+    currentShape = 'cross';
+}
+
+
+function setActivePlayer2(){
+    document.getElementById('player1').classList.add('opacity');
+    document.getElementById('player2').classList.remove('opacity');
+    currentShape = 'circle';
 }
 
 
@@ -32,7 +43,8 @@ function draw(){
         }
     }
 }
-let winner;
+
+
 
 function checkForWin(){
    
@@ -68,58 +80,90 @@ function checkForWin(){
         winner = fields[2];
         document.getElementById('line-7').style.transform = 'rotate(-45deg) scaleX(1)';
     }
+}
+
+
+function checkForGameOver(){
+    checkForWin();
     if(winner || (allFieldsFilled())){
-        gameOver = true;
-        document.getElementById('game-content').classList.add('opacity');
-        setTimeout(function(){
-            document.getElementById('gameOver').classList.remove('d-none');
-            document.getElementById('winner').classList.remove('d-none');
-            document.getElementById('restart-button').classList.remove('d-none');
-
-            if(winner){
-                document.getElementById('winner').innerHTML = `${winner} hat gewonnen`;  
-            }
-            else{
-                document.getElementById('winner').innerHTML = 'Unenteschieden'; 
-            }
-
-        }, 1000)
-        
+        showGameOverContent();
     }
 }
+
+
+function showGameOverContent(){
+    gameOver = true;
+    document.getElementById('game-content').classList.add('opacity');
+    setTimeout(function(){
+        showGameOverComponents();
+        if(winner){
+            document.getElementById('winner').innerHTML = `${winner} hat gewonnen`;  
+        }
+        else{
+            document.getElementById('winner').innerHTML = 'Unenteschieden'; 
+        }
+    }, 1000)
+}
+
+
+function showGameOverComponents(){
+    document.getElementById('gameOver').classList.remove('d-none');
+    document.getElementById('winner').classList.remove('d-none');
+    document.getElementById('restart-button').classList.remove('d-none');
+}
+
 
 function allFieldsFilled(){
     return (fields[0]) &&(fields[1]) && (fields[2]) && (fields[3]) && (fields[4]) && (fields[5]) && (fields[6]) && (fields[7]) && (fields[8])
 }
 
+
 function restartGame(){
-    gameOver = false;
-    document.getElementById('gameOver').classList.add('d-none');
-    document.getElementById('restart-button').classList.add('d-none');
-    document.getElementById('game-content').classList.remove('opacity');
-    document.getElementById('winner').classList.add('d-none');
+    hideGameOverContent();
+    resetAllVariables();
     document.getElementById('winner').innerHTML = ''; 
-    fields = [];
-    winner = '';
-    document.getElementById('player1').classList.remove('opacity');
-    document.getElementById('player2').classList.add('opacity');
-    currentShape = 'circle';
-    for(let i =0; i<8; i++){
-        if(i<3){
-            document.getElementById('line-'+i).style.transform = 'scaleX(0)';
-        }
-        if(i>2 && i<6){
-            document.getElementById('line-'+i).style.transform = 'rotate(90deg) scaleX(0)';
-        }
-        if(i== 6){
-            document.getElementById('line-'+i).style.transform = 'rotate(45deg) scaleX(0)';
-        }
-        if(i==7){
-            document.getElementById('line-'+i).style.transform = 'rotate(-45deg) scaleX(0)';
-        }
-    }
+    setActivePlayer1();
+    resetGamingFields();
+    resetWinnerLines();  
+}
+
+
+function resetGamingFields(){
     for(let i =0; i<9; i++){
         document.getElementById('circle'+i).classList.add('d-none');
         document.getElementById('cross'+i).classList.add('d-none');
     }
+}
+
+
+function resetWinnerLines(){
+    for(let i =0; i<8; i++){
+    if(i<3){
+        document.getElementById('line-'+i).style.transform = 'scaleX(0)';
+    }
+    if(i>2 && i<6){
+        document.getElementById('line-'+i).style.transform = 'rotate(90deg) scaleX(0)';
+    }
+    if(i== 6){
+        document.getElementById('line-'+i).style.transform = 'rotate(45deg) scaleX(0)';
+    }
+    if(i==7){
+        document.getElementById('line-'+i).style.transform = 'rotate(-45deg) scaleX(0)';
+    }
+    }
+}
+
+
+function hideGameOverContent(){
+    document.getElementById('winner').classList.add('d-none');
+    document.getElementById('gameOver').classList.add('d-none');
+    document.getElementById('restart-button').classList.add('d-none');
+    document.getElementById('game-content').classList.remove('opacity');
+}
+
+
+function resetAllVariables(){
+    gameOver = false;
+    fields = [];
+    winner = '';
 }
