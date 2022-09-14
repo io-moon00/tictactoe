@@ -33,8 +33,6 @@ td{
     height: 153px;
     border: 8px solid rgb(255, 255, 255);
     transition: all 125ms ease-in-out;
-
-
 }
 
 td:hover{
@@ -152,14 +150,15 @@ table tr td:last-child{
 }
 
 .restart-button{
-    border: 1px solid rgb(216,32,40);
+    border: none;
     background-color: rgb(216,32,40);
     color: white;
     padding: 20px 100px;
     border-radius: 8px;
     z-index: 8;
     position: absolute;
-    bottom: 80px;
+    bottom: 50px;
+    font-size: 24px;
     animation: zoomIn 225ms ease-in-out;
 }
 
@@ -170,6 +169,21 @@ table tr td:last-child{
 
 .opacity{
     opacity: 0.3;
+}
+
+.winner{
+    color: white;
+    font-size: 24px;
+    position: absolute;
+    top: 50px;
+    background-color: rgba(0, 0, 0, 0.8);
+    width: 100%;
+    padding: 50px 0;
+    border-radius: 8px;
+    z-index: 4;
+    text-align: center;
+    transition: transform 225ms ease-in-out;
+    transform: scaleX(0.0);
 }
 
 @keyframes zoomIn{
@@ -186,13 +200,12 @@ table tr td:last-child{
 @media (max-width: 540px){
     :root{
         --vertical-line-left: -95px;
-        --vertical-line-top: 175px;
+        --vertical-line-top: 169px;
         --vertical-line-step: 116px;
 
         --horizontal-line-left: 20px;
         --horizontal-line-top: 50px;
         --horizontal-line-step: 120px;   
-        
     }
 
     td{
