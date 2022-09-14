@@ -1,3 +1,13 @@
+:root{
+    --horizontal-line-left: 26px;
+    --horizontal-line-top: 71px;
+    --horizontal-line-step: 164px;
+
+    --vertical-line-left: -133px;
+    --vertical-line-top: 233px;
+    --vertical-line-step: 158px;
+}
+
 body{
     background-image: url(img/bg1.jpeg);
     background-repeat: no-repeat;
@@ -10,25 +20,27 @@ body{
     font-family: 'Roboto Slab', serif;
 }
 
+.pos-rel{
+    position: relative;
+}
+
 table{
     border-collapse:collapse;
 }
 
 td{
-    width: 133px;
-    height: 133px;
+    width: 149px;
+    height: 153px;
     border: 8px solid rgb(255, 255, 255);
     transition: all 125ms ease-in-out;
+
+
 }
 
 td:hover{
     background: rgba(128, 128, 128, 0.342);
     transition: all 125ms ease-in-out;
     cursor: pointer;
-}
-
-tr{
-    width: 399px;
 }
 
 table tr:first-child td{
@@ -56,8 +68,8 @@ table tr td:last-child{
     fill:none;
     stroke: rgb(255, 255, 255);
     box-sizing: border-box;
-    stroke-width: 0.9px;
-    scale: 0.7;
+    stroke-width: 1.3px;
+    scale: 0.65;
 }
 
 .d-none{
@@ -82,6 +94,50 @@ table tr td:last-child{
     transform: scaleX(0.0);
     transform: scaleY(0.0);
     transition: transform 225ms ease-in-out;
+}
+
+.horizontal-line0{
+    left: var(--horizontal-line-left);
+    top: var(--horizontal-line-top);
+}
+
+.horizontal-line1{
+    left: var(--horizontal-line-left);
+    top: calc(var(--horizontal-line-top) + var(--horizontal-line-step));
+}
+
+.horizontal-line2{
+    left: var(--horizontal-line-left);
+    top: calc(var(--horizontal-line-top) + 2 * var(--horizontal-line-step));
+}
+
+.vertical-line0{
+    top: var(--vertical-line-top);
+    left: var(--vertical-line-left);
+}
+
+.vertical-line1{
+    top: var(--vertical-line-top);
+    left: calc(var(--vertical-line-left) + var(--vertical-line-step));
+}
+
+.vertical-line2{
+    top: var(--vertical-line-top);
+    left: calc(var(--vertical-line-left) + 2 * var(--vertical-line-step));
+}
+
+.diagonal-line0{
+    top: var(--vertical-line-top);
+    width: 550px;
+    left: -42px;
+    transform: rotate(45deg) scaleX(0.0);
+}
+
+.diagonal-line1{
+    top: var(--vertical-line-top);
+    width: 550px;
+    right: -42px;
+    transform: rotate(-45deg) scaleX(0.0);
 }
 
 .make-vertikal{
@@ -124,6 +180,48 @@ table tr td:last-child{
     to{
         opacity: 1;
         transform: scale(1);
+    }
+}
+
+@media (max-width: 540px){
+    :root{
+        --vertical-line-left: -95px;
+        --vertical-line-top: 175px;
+        --vertical-line-step: 116px;
+
+        --horizontal-line-left: 20px;
+        --horizontal-line-top: 50px;
+        --horizontal-line-step: 120px;   
+        
+    }
+
+    td{
+        width: 106px;
+        height: 110px;
+    }
+
+    .circle{
+        scale: 0.5;
+    }
+
+    .cross{
+        scale: 0.4;
+    }
+
+    .horizontal-line{
+        width: 300px;
+    }
+
+    .diagonal-line0{
+        top: 168px;
+        width: 400px;
+        left: -30px;
+    }
+    
+    .diagonal-line1{
+        top: 168px;
+        width: 400px;
+        right: -30px;
     }
 }
 

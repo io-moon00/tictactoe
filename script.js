@@ -1,5 +1,5 @@
 let fields = [];
-let currentShape = 'cross';
+let currentShape = 'circle';
 let gameOver = false;
 
 function fillShape(id){
@@ -68,28 +68,42 @@ function checkForWin(){
         winner = fields[2];
         document.getElementById('line-7').style.transform = 'rotate(-45deg) scaleX(1)';
     }
-    if(winner){
+    if(winner || (allFieldsFilled())){
         gameOver = true;
         document.getElementById('game-content').classList.add('opacity');
         setTimeout(function(){
             document.getElementById('gameOver').classList.remove('d-none');
+            document.getElementById('winner').classList.remove('d-none');
             document.getElementById('restart-button').classList.remove('d-none');
+
+            if(winner){
+                document.getElementById('winner').innerHTML = `${winner} hat gewonnen`;  
+            }
+            else{
+                document.getElementById('winner').innerHTML = 'Unenteschieden'; 
+            }
+
         }, 1000)
         
     }
-
-
 }
 
+function allFieldsFilled(){
+    return (fields[0]) &&(fields[1]) && (fields[2]) && (fields[3]) && (fields[4]) && (fields[5]) && (fields[6]) && (fields[7]) && (fields[8])
+}
 
 function restartGame(){
     gameOver = false;
     document.getElementById('gameOver').classList.add('d-none');
     document.getElementById('restart-button').classList.add('d-none');
     document.getElementById('game-content').classList.remove('opacity');
+    document.getElementById('winner').classList.add('d-none');
+    document.getElementById('winner').innerHTML = ''; 
     fields = [];
     winner = '';
-    currentShape = 'cross';
+    document.getElementById('player1').classList.remove('opacity');
+    document.getElementById('player2').classList.add('opacity');
+    currentShape = 'circle';
     for(let i =0; i<8; i++){
         if(i<3){
             document.getElementById('line-'+i).style.transform = 'scaleX(0)';
